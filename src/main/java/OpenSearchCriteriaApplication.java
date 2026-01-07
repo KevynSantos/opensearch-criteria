@@ -29,10 +29,10 @@ public class OpenSearchCriteriaApplication {
 
     	OsQuery query = OsQueryBuilder.create()
     		    .where(spec)
-    		    .source("nome", "email")
-    		    .sort(
-    		        OsSort.empty().desc("nome.keyword") // 👈 SOURCE AQUI
-    		            .asc("idade")
+    		    .source("nome", "email") // 👈 SOURCE AQUI
+    		    .sort( 
+    		        OsSort.empty().desc("nome.keyword") 
+    		            .asc("idade")			// 👈 SORT AQUI
     		            .desc("createdAt")
     		    )
     		    .build();
