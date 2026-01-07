@@ -1,36 +1,38 @@
 package criteria;
 
-/**
-*
-*
-* @author Kevyn
-* @since 2026
-* @github https://github.com/KevynSantos
-*/
-
+import java.util.*;
 import query.*;
 
 public final class OsSpecifications {
 
     private OsSpecifications() {}
 
-    public static OsSpecification match(String field, Object value) {
-        return () -> new MatchCriterion(field, value);
-    }
-
+    // ===== TERM =====
     public static OsSpecification term(String field, Object value) {
         return () -> new TermCriterion(field, value);
     }
 
-    public static OsSpecification range(String field) {
-        return () -> new RangeCriterion(field);
+    // ===== TERMS (IN) =====
+    public static OsSpecification terms(String field, Collection<?> values) {
+        return () -> new TermsCriterion(field, values);
     }
 
-    public static OsSpecification exists(String field) {
-        return () -> new ExistsCriterion(field);
+    // ===== MATCH =====
+    public static OsSpecification match(String field, Object value) {
+        return () -> new MatchCriterion(field, value);
     }
 
-    public static OsSpecification nested(String path, OsSpecification spec) {
-        return () -> new NestedCriterion(path, spec.toPredicate());
+    // ===== OR com minimum_should_match =====
+    public static OsSpecification or(
+            OsSpecification left,
+            OsSpecification right,
+            int minimumShouldMatch
+    ) {
+        return () -> {
+            return new query.BoolCriterion()
+                .should(left.toPredicate())
+                .should(right.toPredicate())
+                .minimumShouldMatch(minimumShouldMatch);
+        };
     }
 }
