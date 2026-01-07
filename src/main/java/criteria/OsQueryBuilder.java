@@ -24,6 +24,12 @@ public class OsQueryBuilder {
         this.specification = spec;
         return this;
     }
+    
+    public OsQueryBuilder sort(OsSort sort) {
+        this.sort = sort.toDsl();
+        return this;
+    }
+
 
     public OsQueryBuilder from(int from) {
         this.from = from;

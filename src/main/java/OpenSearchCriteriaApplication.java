@@ -1,5 +1,6 @@
 import criteria.OsQuery;
 import criteria.OsQueryBuilder;
+import criteria.OsSort;
 import criteria.OsSpecification;
 import criteria.OsSpecifications;
 import util.JsonDslBuilder;
@@ -21,10 +22,16 @@ public class OpenSearchCriteriaApplication {
     		        .or(OsSpecifications.term("nome.keyword", "joao")); // 👈 QUERY AQUI
 
 
-        OsQuery query = OsQueryBuilder.create()
-            .where(spec)
-            .source("nome", "email") // 👈 SOURCE AQUI
-            .build();
+    	OsQuery query = OsQueryBuilder.create()
+    		    .where(spec)
+    		    .source("nome", "email")
+    		    .sort(
+    		        OsSort.by("nome.keyword") // 👈 SOURCE AQUI
+    		            .asc("idade")
+    		            .desc("createdAt")
+    		    )
+    		    .build();
+
 
         System.out.println(
             JsonDslBuilder.toJson(query.toDsl()) // 👈 RESULTADO
