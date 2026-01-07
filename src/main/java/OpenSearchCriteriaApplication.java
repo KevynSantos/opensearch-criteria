@@ -8,9 +8,10 @@ public class OpenSearchCriteriaApplication {
 
     public static void main(String[] args) {
 
-        OsSpecification spec =
-            OsSpecifications.term("nome.keyword", "kevyn")
-                .and(OsSpecifications.term("ativo", true));
+    	OsSpecification spec =
+    		    OsSpecifications.term("nome.keyword", "kevyn").must()
+    		        .and(OsSpecifications.term("nome.keyword", "joao"));
+
 
         OsQuery query = OsQueryBuilder.create()
             .where(spec)

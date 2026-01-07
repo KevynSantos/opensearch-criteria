@@ -1,19 +1,31 @@
 package criteria;
 
-@FunctionalInterface
 public interface OsSpecification {
 
     OsCriterion toPredicate();
 
     default OsSpecification and(OsSpecification other) {
-        return () -> this.toPredicate().and(other.toPredicate());
+        return new AndSpecification(this, other);
     }
 
     default OsSpecification or(OsSpecification other) {
-        return () -> this.toPredicate().or(other.toPredicate());
+        return new OrSpecification(this, other);
     }
 
-    default OsSpecification not() {
-        return () -> this.toPredicate().not();
+    // 👇 NOVO
+    default OsSpecification must() {
+        return new ClauseSpecification(this, BoolClause.MUST);
+    }
+
+    default OsSpecification filter() {
+        return new ClauseSpecification(this, BoolClause.FILTER);
+    }
+
+    default OsSpecification should() {
+        return new ClauseSpecification(this, BoolClause.SHOULD);
+    }
+
+    default OsSpecification mustNot() {
+        return new ClauseSpecification(this, BoolClause.MUST_NOT);
     }
 }
