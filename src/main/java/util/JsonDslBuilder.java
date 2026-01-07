@@ -1,5 +1,13 @@
 package util;
 
+/**
+*
+*
+* @author Kevyn
+* @since 2026
+* @github https://github.com/KevynSantos
+*/
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 

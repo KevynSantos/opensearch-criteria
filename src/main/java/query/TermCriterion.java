@@ -1,5 +1,13 @@
 package query;
 
+/**
+*
+*
+* @author Kevyn
+* @since 2026
+* @github https://github.com/KevynSantos
+*/
+
 import criteria.OsCriterion;
 import java.util.*;
 

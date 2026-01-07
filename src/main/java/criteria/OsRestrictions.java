@@ -1,5 +1,13 @@
 package criteria;
 
+/**
+*
+*
+* @author Kevyn
+* @since 2026
+* @github https://github.com/KevynSantos
+*/
+
 import query.*;
 
 public final class OsRestrictions {

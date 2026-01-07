@@ -3,6 +3,14 @@ package criteria;
 import query.BoolCriterion;
 import java.util.*;
 
+/**
+*
+*
+* @author Kevyn
+* @since 2026
+* @github https://github.com/KevynSantos
+*/
+
 public class OsCriteria {
 
     private final BoolCriterion rootBool = new BoolCriterion();
