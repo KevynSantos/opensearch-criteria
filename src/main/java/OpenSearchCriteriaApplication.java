@@ -16,10 +16,15 @@ import util.JsonDslBuilder;
 public class OpenSearchCriteriaApplication {
 
     public static void main(String[] args) {
+    	
+    	OsSpecification nomeSpec =
+    		    OsSpecifications.term("nome.keyword", "kevyn").filter();
 
-    	OsSpecification spec =
-    		    OsSpecifications.term("nome.keyword", "kevyn").must()
-    		        .or(OsSpecifications.term("nome.keyword", "joao")); // 👈 QUERY AQUI
+    		OsSpecification ativoSpec =								// 👈 QUERY AQUI
+    		    OsSpecifications.term("ativo", true).filter();
+
+    		OsSpecification spec = nomeSpec.and(ativoSpec);
+
 
 
     	OsQuery query = OsQueryBuilder.create()
