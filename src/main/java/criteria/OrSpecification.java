@@ -18,6 +18,8 @@ public class OrSpecification implements OsSpecification {
 
         apply(bool, left);
         apply(bool, right);
+        
+        bool.minimumShouldMatch(1); // 👈 ESSENCIAL
 
         return bool;
     }

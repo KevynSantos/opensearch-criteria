@@ -12,6 +12,7 @@ public class BoolCriterion implements OsCriterion {
     private final List<OsCriterion> filter = new ArrayList<>();
     private final List<OsCriterion> should = new ArrayList<>();
     private final List<OsCriterion> mustNot = new ArrayList<>();
+    private Integer minimumShouldMatch;
 
     public BoolCriterion must(OsCriterion c) {
         if (c != null) must.add(c);
@@ -33,6 +34,12 @@ public class BoolCriterion implements OsCriterion {
         return this;
     }
 
+    public BoolCriterion minimumShouldMatch(int value) {
+        this.minimumShouldMatch = value;
+        return this;
+    }
+
+
     @Override
     public Object toDsl() {
         Map<String, Object> bool = new LinkedHashMap<>();
@@ -41,6 +48,11 @@ public class BoolCriterion implements OsCriterion {
         if (!filter.isEmpty()) bool.put("filter", toList(filter));
         if (!should.isEmpty()) bool.put("should", toList(should));
         if (!mustNot.isEmpty()) bool.put("must_not", toList(mustNot));
+        
+        if (minimumShouldMatch != null) {
+            bool.put("minimum_should_match", minimumShouldMatch);
+        }
+
 
         return Collections.singletonMap("bool", bool);
     }

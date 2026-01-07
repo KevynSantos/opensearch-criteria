@@ -10,7 +10,7 @@ public class OpenSearchCriteriaApplication {
 
     	OsSpecification spec =
     		    OsSpecifications.term("nome.keyword", "kevyn").must()
-    		        .and(OsSpecifications.term("nome.keyword", "joao"));
+    		        .or(OsSpecifications.term("nome.keyword", "joao"));
 
 
         OsQuery query = OsQueryBuilder.create()
