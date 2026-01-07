@@ -1,0 +1,37 @@
+# ===== Java =====
+*.class
+*.log
+
+# ===== Maven =====
+target/
+*.jar
+*.war
+*.ear
+
+# ===== Gradle =====
+.gradle/
+build/
+
+# ===== IDEs =====
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# NetBeans
+nbproject/
+dist/
+
+# ===== Sistema operacional =====
+.DS_Store
+Thumbs.db
+
+# ===== Logs =====
+logs/
