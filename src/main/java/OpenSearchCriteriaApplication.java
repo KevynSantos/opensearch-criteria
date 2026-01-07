@@ -11,6 +11,7 @@ import util.JsonDslBuilder;
  * @author Kevyn
  * @since 2026
  * @github https://github.com/KevynSantos
+ * Referência de Código: https://www.baeldung.com/hibernate-criteria-queries
  */
 
 public class OpenSearchCriteriaApplication {
