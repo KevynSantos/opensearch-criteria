@@ -31,7 +31,7 @@ public class OpenSearchCriteriaApplication {
     		    .where(spec)
     		    .source("nome", "email")
     		    .sort(
-    		        OsSort.by("nome.keyword") // 👈 SOURCE AQUI
+    		        OsSort.empty().desc("nome.keyword") // 👈 SOURCE AQUI
     		            .asc("idade")
     		            .desc("createdAt")
     		    )
