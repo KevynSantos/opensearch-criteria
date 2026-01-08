@@ -17,8 +17,6 @@ public class OsTermsAggregationResult {
         for (Map<String, Object> b : rawBuckets) {
             buckets.add(
                 new OsBucket(
-                    String.valueOf(b.get("key")),
-                    ((Number) b.get("doc_count")).longValue(),
                     b
                 )
             );
