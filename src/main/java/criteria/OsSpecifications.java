@@ -21,6 +21,12 @@ public final class OsSpecifications {
     public static OsSpecification match(String field, Object value) {
         return () -> new MatchCriterion(field, value);
     }
+    
+ // ===== RANGE =====
+    public static OsRangeSpecification range(String field) {
+        return new OsRangeSpecification(field);
+    }
+
 
     // ===== OR com minimum_should_match =====
     public static OsSpecification or(
