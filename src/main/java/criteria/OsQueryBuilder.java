@@ -20,7 +20,7 @@ public class OsQueryBuilder {
         return new OsQueryBuilder();
     }
     
-    public OsQueryBuilder andWhere(OsSpecification spec) {
+    public OsQueryBuilder addOrUpdateWhere(OsSpecification spec) {
         if (this.specification == null) {
             this.specification = spec;
         } else {
