@@ -1,6 +1,16 @@
 package criteria;
 
 public class OsTrackTotalHits {
+	
+	//uso
+	//OsQuery query = OsQueryBuilder.create()
+    //.where(spec)
+    //.trackTotalHits(OsTrackTotalHits.enable())
+    //.build();
+	
+	//ou
+	//.trackTotalHits(OsTrackTotalHits.limit(5000))
+
 
     private final Object value;
 
