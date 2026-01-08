@@ -19,6 +19,16 @@ public class OsQueryBuilder {
     public static OsQueryBuilder create() {
         return new OsQueryBuilder();
     }
+    
+    public OsQueryBuilder andWhere(OsSpecification spec) {
+        if (this.specification == null) {
+            this.specification = spec;
+        } else {
+            this.specification = this.specification.and(spec);
+        }
+        return this;
+    }
+
 
     public OsQueryBuilder where(OsSpecification spec) {
         this.specification = spec;
