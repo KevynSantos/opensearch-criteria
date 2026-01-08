@@ -1,5 +1,9 @@
 package util;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+
 /**
 *
 *
@@ -10,6 +14,7 @@ package util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public final class JsonDslBuilder {
 
@@ -24,5 +29,18 @@ public final class JsonDslBuilder {
         } catch (Exception e) {
             throw new RuntimeException("Erro ao gerar JSON DSL", e);
         }
+    }
+    
+    public static ObjectNode toNode(String str) throws JsonMappingException, JsonProcessingException
+    {
+    	JsonNode jsonNode = MAPPER.readTree(str);
+    	
+    	ObjectNode node = null;
+
+    	if (jsonNode.isObject()) {
+    	    node = (ObjectNode) jsonNode;
+    	}
+    	
+    	return node;
     }
 }
