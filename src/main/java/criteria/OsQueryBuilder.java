@@ -1,5 +1,7 @@
 package criteria;
 
+import criteria.aggregation.OsAggregation;
+
 /**
 *
 *
@@ -16,6 +18,8 @@ public class OsQueryBuilder {
     private Object sort;
     private OsSource source;
     private Object trackTotalHits;
+    private Object aggregations;
+
 
     public static OsQueryBuilder create() {
         return new OsQueryBuilder();
@@ -29,6 +33,11 @@ public class OsQueryBuilder {
 
     public OsQueryBuilder trackTotalHits(boolean enabled) {
         this.trackTotalHits = enabled;
+        return this;
+    }
+    
+    public OsQueryBuilder aggregations(OsAggregation aggregation) {
+        this.aggregations = aggregation.toDsl();
         return this;
     }
 
@@ -107,7 +116,8 @@ public class OsQueryBuilder {
             size,
             sort,
             source,
-            trackTotalHits
+            trackTotalHits,
+            aggregations
         );
     }
 }

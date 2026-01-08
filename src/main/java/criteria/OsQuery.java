@@ -11,6 +11,7 @@ public class OsQuery {
     private final Object sort;
     private final OsSource source;
     private final Object trackTotalHits;
+    private final Object aggregations;
 
     public OsQuery(
         Object query,
@@ -18,7 +19,8 @@ public class OsQuery {
         Integer size,
         Object sort,
         OsSource source,
-        Object trackTotalHits
+        Object trackTotalHits,
+        Object aggregations
     ) {
         this.query = query;
         this.from = from;
@@ -26,6 +28,7 @@ public class OsQuery {
         this.sort = sort;
         this.source = source;
         this.trackTotalHits = trackTotalHits;
+        this.aggregations = aggregations;
     }
 
     public Map<String, Object> toDsl() {
@@ -49,6 +52,11 @@ public class OsQuery {
         if (trackTotalHits != null) {
             dsl.put("track_total_hits", trackTotalHits);
         }
+        
+        if (aggregations != null) {
+            dsl.put("aggs", aggregations);
+        }
+
 
         return dsl;
     }
