@@ -15,10 +15,29 @@ public class OsQueryBuilder {
     private Integer size;
     private Object sort;
     private OsSource source;
+    private Object trackTotalHits;
 
     public static OsQueryBuilder create() {
         return new OsQueryBuilder();
     }
+    
+    public OsQueryBuilder page(OsPageRequest pageRequest) {
+        this.from = pageRequest.getFrom();
+        this.size = pageRequest.getSize();
+        return this;
+    }
+
+    public OsQueryBuilder trackTotalHits(boolean enabled) {
+        this.trackTotalHits = enabled;
+        return this;
+    }
+
+    public OsQueryBuilder trackTotalHits(OsTrackTotalHits track) {
+        this.trackTotalHits = track.toDsl();
+        return this;
+    }
+
+
     
     public OsQueryBuilder addOrUpdateWhere(OsSpecification spec) {
         if (this.specification == null) {
@@ -87,7 +106,8 @@ public class OsQueryBuilder {
             from,
             size,
             sort,
-            source
+            source,
+            trackTotalHits
         );
     }
 }
