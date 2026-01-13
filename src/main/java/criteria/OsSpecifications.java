@@ -26,6 +26,28 @@ public final class OsSpecifications {
     public static OsRangeSpecification range(String field) {
         return new OsRangeSpecification(field);
     }
+    
+    public static OsSpecification or(
+            int minimumShouldMatch,
+            OsSpecification... specs
+    ) {
+        return () -> {
+            query.BoolCriterion bool = new query.BoolCriterion();
+
+            for (OsSpecification spec : specs) {
+                bool.should(spec.toPredicate());
+            }
+
+            return bool.minimumShouldMatch(minimumShouldMatch);
+        };
+    }
+
+    
+ // ===== WILDCARD =====
+    public static OsSpecification wildcard(String field, String value) {
+        return () -> new WildcardCriterion(field, value);
+    }
+
 
 
     // ===== OR com minimum_should_match =====

@@ -63,6 +63,11 @@ public class OsQueryBuilder {
         return this;
     }
     
+    public OsSpecification getWhere()
+    {
+    	return this.specification;
+    }
+    
     public OsQueryBuilder sort(OsSort sort) {
         this.sort = sort.toDsl();
         return this;
