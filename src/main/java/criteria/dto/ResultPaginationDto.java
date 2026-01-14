@@ -1,10 +1,24 @@
 package criteria.dto;
 
-import java.util.List;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ResultPaginationDto {
+	
+	public ResultPaginationDto(String responseBody, Integer pageSize, Integer page) throws JsonMappingException, JsonProcessingException
+	{
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode root = mapper.readTree(responseBody);
+		int total = root.path("hits").path("total").path("value").asInt();
+		JsonNode records = root.path("hits").path("hits");
+		
+		this.page = page;
+		this.pageSize = pageSize;
+		this.records = records;
+		this.total = total;
+	}
 	
 	private Integer page;
 	
