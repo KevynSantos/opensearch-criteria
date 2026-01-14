@@ -19,6 +19,8 @@ public class OsQueryBuilder {
     private OsSource source;
     private Object trackTotalHits;
     private Object aggregations;
+    private Object searchAfter;
+
 
 
     public static OsQueryBuilder create() {
@@ -30,6 +32,13 @@ public class OsQueryBuilder {
         this.size = pageRequest.getSize();
         return this;
     }
+    
+    public OsQueryBuilder searchAfter(Object... values) {
+        this.searchAfter = values;
+        this.from = null; // search_after não pode coexistir com from
+        return this;
+    }
+
 
     public OsQueryBuilder trackTotalHits(boolean enabled) {
         this.trackTotalHits = enabled;
@@ -122,7 +131,9 @@ public class OsQueryBuilder {
             sort,
             source,
             trackTotalHits,
-            aggregations
+            aggregations,
+            searchAfter
         );
     }
+
 }
