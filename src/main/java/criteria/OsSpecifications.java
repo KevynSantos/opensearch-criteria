@@ -23,6 +23,12 @@ public final class OsSpecifications {
     }
     
  // ===== RANGE =====
+    public static RangeSpecification rangeWithFormat(String field) {
+        return new RangeSpecification(field);
+    }
+
+    
+ // ===== RANGE =====
     public static OsRangeSpecification range(String field) {
         return new OsRangeSpecification(field);
     }
