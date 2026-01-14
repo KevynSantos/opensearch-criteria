@@ -2,6 +2,8 @@ package criteria.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 public class ResultPaginationDto {
 	
 	private Integer page;
@@ -10,7 +12,7 @@ public class ResultPaginationDto {
 	
 	private Integer total;
 	
-	private List<Object> records;
+	private JsonNode records;
 
 	public Integer getPage() {
 		return page;
@@ -36,11 +38,11 @@ public class ResultPaginationDto {
 		this.total = total;
 	}
 
-	public List<Object> getRecords() {
+	public JsonNode getRecords() {
 		return records;
 	}
 
-	public void setRecords(List<Object> records) {
+	public void setRecords(JsonNode records) {
 		this.records = records;
 	}
 	
