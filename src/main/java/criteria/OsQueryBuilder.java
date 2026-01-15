@@ -1,5 +1,8 @@
 package criteria;
 
+import java.util.Arrays;
+import java.util.List;
+
 import criteria.aggregation.OsAggregation;
 
 /**
@@ -33,11 +36,18 @@ public class OsQueryBuilder {
         return this;
     }
     
-    public OsQueryBuilder searchAfter(Object... values) {
+    public OsQueryBuilder searchAfter(List<?> values) {
         this.searchAfter = values;
         this.from = null; // search_after não pode coexistir com from
         return this;
     }
+    
+    public OsQueryBuilder searchAfter(Object... values) {
+        this.searchAfter = Arrays.asList(values);
+        this.from = null;
+        return this;
+    }
+
 
 
     public OsQueryBuilder trackTotalHits(boolean enabled) {
